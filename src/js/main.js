@@ -10,7 +10,7 @@ function render_post(post) {
       <img class="profile_picture">
       <b><p class="post_username"></p></b>
       <p class="post_body"></p>
-      <hr>
+      <hr><br>
 
       <div id="commentFeed" class="comments">
         <div id="addComment">
@@ -27,9 +27,9 @@ function render_post(post) {
     let $comments = $post.find("#commentFeed");
 
     $post.find("#postComment").on("click", () => {
-        _send_comment(post["postID"], $post.find("#newComment").val());
-        $comments.append(`<div class="comment"><img class="profile_picture" src="${Cookies.get("self")["picture"]}"><b><p>${Cookies.get("self")["firstName"] + " " + Cookies.get("self")["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
-        $post.find("#newComment").attr("value", "");
+        _send_comment(post["postID"], $post.find("#newComment").val(), ()=>{location="/";});
+        //$comments.append(`<br><div class="comment"><img class="profile_picture" src="${self["picture"]}"><b><p>${self["firstName"] + " " + self["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
+        //$post.find("#newComment").attr("value", "");
     });
 
     $post.find("img").attr("src", post["poster"]["picture"]);
@@ -38,7 +38,7 @@ function render_post(post) {
 
 
     post["comments"].forEach((comment, i)=>{
-        $comments.append(`<div class="comment"><img class="profile_picture" src="${comment["poster"]["picture"]}"><b><p>${comment["poster"]["firstName"] + " " + comment["poster"]["lastName"]}</p></b> <p>${comment["msg"]}</p></div>`);
+        $comments.append(`<br><div class="comment"><img class="profile_picture" src="${comment["poster"]["picture"]}"><b><p>${comment["poster"]["firstName"] + " " + comment["poster"]["lastName"]}</p></b> <p>${comment["msg"]}</p></div>`);
     });
 }
 
@@ -94,9 +94,8 @@ function show_login() {
     $("#btnLogin").on("click", () => {
         Cookies.set("email", "alan.sandlar@gmail.com");
         Cookies.set("community", "Bankstown");
-        fetch_profile(Cookies.get("email"), (resp) => {Cookies.set("self", resp)});
+        fetch_profile(Cookies.get("email"), (resp) => {self = resp;});
         show_community();
-        console.log(Cookies.get("self"));
     });
 }
 
@@ -146,9 +145,9 @@ function _send_post(msg) {
     _callback_fetch("/api/post?community=" + Cookies.get("community") + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
 }
 
-function _send_comment(postID, msg) {
+function _send_comment(postID, msg, callback) {
     // Sends a comment to a post
-    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
+    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, callback);
 }
 
 
