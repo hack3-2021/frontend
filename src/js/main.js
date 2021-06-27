@@ -57,8 +57,10 @@ function create_user() {
         _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`, (resp) => {
             console.log(resp);
         })
-    }, () => {
         alert("User already exists");
+    }, (jqXHR, textStatus, errorThrown) => {
+        alert(errorThrown);
+        console.log("Errorororor");
     });
 }
 
