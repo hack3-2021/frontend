@@ -23,7 +23,7 @@ function render_post(post) {
     </div>
     `);
 
-    let $post = $stream.children(":first").next();
+    let $post = $stream.children(":first").next().next();
     let $comments = $post.find("#commentFeed");
 
     $post.find("#postComment").on("click", () => {
