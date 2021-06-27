@@ -1,6 +1,9 @@
 let test_email = "normal.human@gmail.com"
 let test_community = "bankstown"
 
+var cached_posts = []
+var most_recent_posts = []
+
 function render_post(post) {
     let $container = $('#stream');
     $container.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
@@ -27,8 +30,8 @@ function fetch_profile(email, on_fetched) {
 function fetch_community(community) {
     callback_fetch("/api/community?community=" + community, (response) => {
         response.forEach((post, index) => {
-            console.log(post);
             render_post(post);
+            most_recent_posts.append(post);
         });
     });
 }
