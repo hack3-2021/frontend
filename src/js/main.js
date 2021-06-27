@@ -20,7 +20,7 @@ function callback_fetch(url, on_fetched) {
 }
 
 function fetch_profile(email, on_fetched) {
-    callback_fetch("/api/profile?email=" + email, on_fetched)
+    callback_fetch("/api/profile?email=" + email, on_fetched);
 }
 
 function fetch_community(community) {
@@ -36,5 +36,5 @@ function redirect(url) {
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    if (window.location.pathname == "/") { fetch_community(test_community) }
+    if (window.location.pathname == "/") { fetch_community(test_community); }
 });
