@@ -31,7 +31,7 @@ function show_community(community) {
     $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
 
     _callback_fetch("/api/community?community=" + community, (response) => {
-        response.forEach((post, i) => render_post(port))
+        response.forEach((post, i) => render_post(post))
     });
 }
 
