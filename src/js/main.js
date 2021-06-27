@@ -59,8 +59,9 @@ function create_user() {
         })
         alert("User already exists");
     }, (jqXHR, textStatus, errorThrown) => {
-        alert(errorThrown);
-        console.log("Errorororor");
+        console.log("jqXHR: " + toString(jqXHR));
+        console.log("textStatus: " + toString(textStatus));
+        console.log("errorThrown: " + toString(errorThrown));
     });
 }
 
