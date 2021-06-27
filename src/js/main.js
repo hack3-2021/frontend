@@ -60,7 +60,13 @@ function create_user() {
         if (errorThrown=="Not Found") { // User doesn't exist bbgurl
             _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vaccinated}&community=${community}`, (resp) => {
                 console.log(resp);
-            }, (x,y, errorThrown) => { alert("ERROR: Our server didn't like some of your inputs, who knows why. Our Back-end Dev refuses to implement meaninful errors. Try hitting send again?"); console.log("Error while creating user: "); console.log(errorThrown); console.log(email);})
+            }, (x,y, errorThrown) => {
+                alert("ERROR: Our server didn't like some of your inputs, who knows why. Our Back-end Dev refuses to implement meaninful errors. Try hitting send again?");
+                console.log("Error while creating user: ");
+                console.log(errorThrown);
+                console.log("With URL string: ");
+                console.log("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vaccinated}&community=${community}`);
+            })
         }
     });
 }
