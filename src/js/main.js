@@ -12,10 +12,9 @@ async function render_post(email, contents) {
         "async": true,
     }).done( function (response) {
         console.log(response);
-        console.log($post);
-        $post.children("img").attr("src", response["picture"]);
-        $post.children("p.first").text(response["firstName"] + " " + response["lastName"]);
-        $post.children("p").last().text(contents);
+        $post.find("img").attr("src", response["picture"]);
+        $post.find(".post_username").text(response["firstName"] + " " + response["lastName"]);
+        $post.find(".post_body").text(contents);
     });
 }
 
