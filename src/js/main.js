@@ -4,6 +4,7 @@ var $stream = $("#stream")
 
 function render_post(post) {
     // Formats and appends posts to the stream div
+    console.log(post);
     $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
     let $post = $stream.children(":first").next();
     $post.find("img").attr("src", post["poster"]["picture"]);
@@ -77,5 +78,5 @@ document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
         show_community("Bankstown");
     }
-    $("#btnSignUp").click(create_user());
+   
 });
