@@ -27,8 +27,7 @@ function render_post(post) {
     let $comments = $post.find("#commentFeed");
 
     $post.find("#postComment").on("click", () => {
-        _send_comment(post["postID"], $post.find("#newComment").val());
-        location = "/";
+        _send_comment(post["postID"], $post.find("#newComment").val(), ()=>{location="/";});
         //$comments.append(`<br><div class="comment"><img class="profile_picture" src="${self["picture"]}"><b><p>${self["firstName"] + " " + self["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
         //$post.find("#newComment").attr("value", "");
     });
@@ -146,9 +145,9 @@ function _send_post(msg) {
     _callback_fetch("/api/post?community=" + Cookies.get("community") + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
 }
 
-function _send_comment(postID, msg) {
+function _send_comment(postID, msg, callback) {
     // Sends a comment to a post
-    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
+    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, callback);
 }
 
 
