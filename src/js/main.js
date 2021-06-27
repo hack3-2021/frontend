@@ -50,9 +50,14 @@ function show_login() {
     </div>
     <br>
     <div class="centered">
+      <b><p id="signUpRedirect">Or Create and Account</p></b>
       <button id = "btnLogin" type="button" name="button">Login</button>
     </div>
   </div>`);
+
+    $("#signUpRedirect").on("click", () => {
+        show_signup();
+    });
 
     $("#btnLogin").on("click", () => {
         Cookies.set("email", "alan.sandlar@gmail.com");
@@ -112,18 +117,19 @@ function _send_comment(postID, msg) {
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    $stream = $("#stream");
-    if (window.location.pathname !== "html/about.html") {
-        console.log(Cookies.get("email"));
-        if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
-            show_login();
-        } else {
-            show_community();
-        }
-        
-    }
 
-    
+    _callback_fetch("/api/ping", ()=>{
+        $stream = $("#stream");
+        if (window.location.pathname !== "html/about.html") {
+            console.log(Cookies.get("email"));
+            if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
+                show_login();
+            } else {
+                show_community();
+            }
+            
+        }
+    });
    
 });
 
