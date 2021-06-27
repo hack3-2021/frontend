@@ -38,6 +38,11 @@ button:hover, #btnSignUp:hover{
   background-color:#33bf85;
 }
 
+button:active, #btnSignUp:active {
+  background-color: #008c52;
+  transform: translateY(2px);
+}
+
 .header {
   display: flex;
   justify-content: left;
@@ -146,7 +151,8 @@ text-align: justify;
 }
 
 input, select{
-  font-size: 13px;
+  text-indent: 10px;
+  font-size: 15px;
   height: 34px;
   border: 1px solid #aaa;
   border-radius: 4px;
