@@ -4,23 +4,22 @@ async function render_post(email, contents) {
 
     let $container = $('#stream');
     $container.prepend(`<div class="post"><img><b><p class="name"></p></b><p class="body"></p></div>`);
-    
-    let promise = new Promise( (resolve, reject) => { resolve(fetch_user(email)) } );
-    let result = await promise;
-    console.log(result);
-    //$container.children("img, p").click();
-}
-
-function fetch_user(email) {
     let user_data = {};
+
     $.ajax({
         url: "/api/profile?email=" + email,
         type: 'GET',
         dataType: 'json',
         "async": true,
     }).done( function (response) {
-        user_data = response;
+        $container.chilren("img").attr("src", response["picture"]);
+        $container.chilren("p.first").text(response["firstName"] + " " + resonse["lastName"]);
+        $container.children("p").last().text(contents)
     })
+}
+
+function fetch_user(email) {
+    
     return user_data;
 }
 
