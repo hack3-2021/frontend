@@ -1,7 +1,6 @@
 /* *************************************************************
                     CSS for HTML Elements
 ************************************************************* */
-
 * {
   font-family: "Raleway", sans-serif;
   margin: 0;
@@ -114,9 +113,7 @@ input, select{
   padding: 10px;
   border-radius: 10px;
 }
-#newPost{
 
-}
 #sendPost{
   margin-left: auto;
   margin-right: 0;
@@ -124,7 +121,12 @@ input, select{
   border-radius: 10px;
   width: 20%;
 }
-
+.large_profile_picture{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 .profile_picture{
   padding: 5px;
   border-radius: 50%;
@@ -190,7 +192,7 @@ text-align: justify;
   padding-bottom: 2.5%;
 }
 
-#signUp {
+#signUp, #profile {
   max-width: 600px;
   background-color: #f2f2f2;
   margin:auto;
