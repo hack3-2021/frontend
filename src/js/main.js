@@ -29,7 +29,7 @@ function render_post(post) {
     $post.find("#postComment").on("click", () => {
         _send_comment(post["postID"], $post.find("#newComment").val());
         $comments.append(`<br><div class="comment"><img class="profile_picture" src="${self["picture"]}"><b><p>${self["firstName"] + " " + self["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
-        $post.find("#newComment").attr("value", "");
+        $post.find("#newComment").attr("value") = "";
     });
 
     $post.find("img").attr("src", post["poster"]["picture"]);
