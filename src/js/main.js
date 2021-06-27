@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname !== "html/about.html") {
         console.log(Cookies.get("email"));
         if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
+            console.log("ran");
             show_login(); return;
         }
         show_community();
