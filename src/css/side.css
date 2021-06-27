@@ -69,8 +69,8 @@ input, select{
 }
 
 .header table{
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 25%;
+  margin-right: 25%;
   width: 50%;
 }
 
@@ -96,6 +96,7 @@ input, select{
   margin:auto;
   width:50%;
   padding: 10px;
+  border-radius: 10px;
 }
 .profile_picture{
   border-radius: 50%;
