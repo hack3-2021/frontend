@@ -45,12 +45,6 @@
     <a href = "html/login.html" style="text-decoration:none">Login Page</a>
   </div>
 
-<script>
-function commentToggle(){
-  document.getElementById('commentFeed').style.display = "block";
-}
-</script>
-
   <!-- this element will have posts pushed to it -->
   <div id="stream">
     <div class="spacer"></div>
@@ -61,19 +55,21 @@ function commentToggle(){
       <p class="post_body">Man it's lonely down here...</p>
       <hr>
 
-      <button id="commentToggle" onclick="commentToggle()" style ="width:175px;">Show Comments</button>
+      <button id="commentToggle" style ="width:175px;">Show Comments</button>
 
-      <div id="commentFeed" class="comments" style="display: block;">
-        <div id="addComment" class="comments" style="display: block">
-          <div style="display: flex">
+      <div id="commentFeed" class="comments">
+
+        <div id="addComment" class="comments">
+          <div>
             <img class="profile_picture"> <p class="post_username" style="padding-left: 10px; padding-top: 12px;"><b>Your Name</b></p><br>
           </div>
-          <input type="text" id="NewComment"> <button id="postComment">Post Comment</button>
+          <input type="text" id="newComment"> <button id="postComment">Post Comment</button>
         </div>
 
         <div class="comment">
           <img class="profile_picture"> <b><p>Someones name</p></b> <p>Their comment</p>
         </div>
+
       </div>
     </div>
 
