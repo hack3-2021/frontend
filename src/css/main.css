@@ -91,11 +91,10 @@ html.js>body>p#nojs_fallback {
   display: none;
 }
 
-div.post>img.profile_picture {
+img.profile_picture {
   border-radius: 50%;
   max-width: 50px;
   max-height: 50px;
-  
 }
 
 /* ==========================================================================
