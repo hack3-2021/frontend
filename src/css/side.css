@@ -84,6 +84,7 @@ button:active, #btnSignUp:active {
   margin:auto;
   width:50%;
   padding: 10px;
+  border-radius: 10px;
 }
 .profile_picture{
   border-radius: 50%;
