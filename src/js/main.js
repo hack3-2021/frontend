@@ -54,17 +54,13 @@ function create_user() {
     let vacciated = $("input[name='firstName']").val();
     let community = $("input[name='suburb']").val();
     _callback_fetch(email, (response) => {
-        _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`, (resp) => {
-            console.log(resp);
-        })
-        alert("User already exists");
+        alert("Email already exists");
     }, (jqXHR, textStatus, errorThrown) => {
-        console.log("jqXHR: ");
-        console.log(jqXHR);
-        console.log("textStatus: " );
-        console.log(textStatus);
-        console.log("errorThrown: ");
-        console.log(errorThrown);
+        if (errorThrown=="Not Found") { // User doesn't exist bbgurl
+            _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`, (resp) => {
+                console.log(resp);
+            }, (x,y, errorThrown) => { alert("ERROR: Our server didn't like some of your inputs, who knows why. Our Back-end Dev refuses to implement meaninful errors. Try hitting send again?"); console.log("Error while creating user: "); console.log(errorThrown);})
+        }
     });
 }
 
