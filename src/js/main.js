@@ -132,7 +132,10 @@ function create_user() {
     }, (jqXHR, textStatus, errorThrown) => {
         if (errorThrown=="Not Found") { // User doesn't exist bbgurl
             _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vaccinated}&community=${community}`, (resp) => {
-            }, (x,y, errorThrown) => {
+                Cookies.set("email", email);
+                Cookies.set("community", community);
+            },
+            (x,y, errorThrown) => {
                 alert("ERROR: Our server didn't like some of your inputs, who knows why. Our Back-end Dev refuses to implement meaninful errors. Try hitting send again?");
                 console.log("Error while creating user: ");
                 console.log(errorThrown);
