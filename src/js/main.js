@@ -69,5 +69,5 @@ document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
         console.log();
     }
-    $("#btnSignUp").click(create_user());
+    $("#btnSignUp").click(create_user);
 });
