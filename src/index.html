@@ -31,6 +31,7 @@
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/minor.js"></script>
 
   <p id="nojs_fallback">Your browser does not support JavaScript :(</p>
 
@@ -44,6 +45,12 @@
     <a href = "html/login.html" style="text-decoration:none">Login Page</a>
   </div>
 
+<script>
+function commentToggle(){
+  document.getElementById('commentFeed').style.display = "block";
+}
+</script>
+
   <!-- this element will have posts pushed to it -->
   <div id="stream">
     <div class="spacer"></div>
@@ -53,8 +60,17 @@
       <b><p class="post_username">Dev Team</p></b>
       <p class="post_body">Man it's lonely down here...</p>
       <hr>
-      <b><p>Show Comments:</p></b>
-      <div class="comments" style="display: none;">
+
+      <button id="commentToggle" onclick="commentToggle()">
+        Show Comments V
+      </button>
+    <!-- <b><p><span style="background-color: #00AF66; color: white">Show Comments:</span></p></b> -->
+
+      <div id="commentFeed" class="comments" style="display: block;">
+        <div id="addComment" class="comments" style="display: block">
+            <img class="profile_picture"> <input type="text" id="NewComment"> <button id="postComment">Post Comment</button>
+        </div>
+
         <div class="comment">
           <img class="profile_picture"> <b><p>My Name</p></b> <p>My Message</p>
         </div>
