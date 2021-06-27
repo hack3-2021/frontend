@@ -1,3 +1,5 @@
+let test_email = "normal.human@gmail.com"
+
 async function render_post(email, contents) {
 
     let $container = $('#stream');
@@ -5,7 +7,7 @@ async function render_post(email, contents) {
     
     let promise = new Promise( (resolve, reject) => { resolve(fetch_user(email)) } );
     let result = await promise;
-    
+
     console.log(result)
     //$container.children("img, p").click();
 }
@@ -24,3 +26,4 @@ function fetch_user(email) {
     return user_data;
 }
 
+render_post(test_email, "bing bong")
