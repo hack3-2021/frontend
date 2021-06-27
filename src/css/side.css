@@ -90,7 +90,8 @@ input, select{
   font-weight: lighter;
 }
 
-.post {
+.post, .createPost {
+  overflow:hidden;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background: #f5f5f5;
   margin:auto;
@@ -98,13 +99,22 @@ input, select{
   padding: 10px;
   border-radius: 10px;
 }
+#newPost{
+  
+}
+#sendPost{
+  margin-left: auto;
+  margin-right: 0;
+  float: right;
+  border-radius: 10px;
+  width: 20%;
+}
+
 .profile_picture{
   border-radius: 50%;
   width: 50px;
   height: 50px;
 }
-
-
 .spacer {
   padding: 15px;
 }
