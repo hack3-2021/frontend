@@ -21,7 +21,9 @@ function fetch_user(email) {
         dataType: 'json',
         "async": true,
     }).done( function (response) {
+        console.log("FETCHUSER")
         console.log(response)
+        console.log("ENDFETCHUSER")
         user_data = response
     })
     return user_data;
