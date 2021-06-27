@@ -33,7 +33,7 @@ function show_community(community) {
     });
 }
 
-function show_login() {
+function show_signup() {
     $stream.innerHTML = "";
 
 
@@ -45,19 +45,19 @@ function show_about() {
 }
 
 function create_user() {
-    let email = $("input[name='firstName']").val();
-    let first_name = $("input[name='lastName']").val();
-    let last_name = $("input[name='email']").val();
+    let first_name = $("input[name='firstName']").val();
+    let last_name = $("input[name='lastName']").val();
+    let email = $("input[name='email']").val();
     let picture_url = $("input[name='profileURL']").val();
     let bio = $("input[name='bio']").val();
     let phone_number = $("input[name='phoneNum']").val();
-    let vacciated = $("input[name='firstName']").val();
+    let vaccinated = $("input[name='vaccinated']").val();
     let community = $("input[name='suburb']").val();
     _callback_fetch("/api/profile?email=" + email, (response) => {
         alert("Email already exists");
     }, (jqXHR, textStatus, errorThrown) => {
         if (errorThrown=="Not Found") { // User doesn't exist bbgurl
-            _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`, (resp) => {
+            _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vaccinated}&community=${community}`, (resp) => {
                 console.log(resp);
             }, (x,y, errorThrown) => { alert("ERROR: Our server didn't like some of your inputs, who knows why. Our Back-end Dev refuses to implement meaninful errors. Try hitting send again?"); console.log("Error while creating user: "); console.log(errorThrown); console.log(email);})
         }
@@ -68,5 +68,5 @@ document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
         console.log();
     }
-    $("#btnSignUp").click(create_user);
+    
 });
