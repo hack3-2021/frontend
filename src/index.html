@@ -68,7 +68,10 @@ function commentToggle(){
 
       <div id="commentFeed" class="comments" style="display: block;">
         <div id="addComment" class="comments" style="display: block">
-            <img class="profile_picture"> <input type="text" id="NewComment"> <button id="postComment">Post Comment</button>
+          <div style="display: flex">
+            <img class="profile_picture"> <p class="post_username" style="padding-left: 10px; padding-top: 12px;"><b>Your Name</b></p><br>
+          </div>
+          <input type="text" id="NewComment" style="width:40%"> <button id="postComment">Post Comment</button>
         </div>
 
         <div class="comment">
