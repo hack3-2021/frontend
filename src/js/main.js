@@ -113,7 +113,10 @@ function _send_comment(postID, msg) {
 
 document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
-        show_community("Bankstown");
+        if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
+            show_login(); return;
+        }
+        show_community();
     }
 
     
