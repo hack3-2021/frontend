@@ -77,6 +77,7 @@ function create_user() {
     });
 }
 
+/*
 function fetch_send_post(community, email, msg, on_fetched, ) {
     // Sends a post to a community
     _callback_fetch("/api/post?community=" + community + "&email=" + email + "&msg=" + msg, on_fetched);
@@ -86,7 +87,7 @@ function fetch_send_comment(postID, email, msg, on_fetched, ) {
     // Sends a comment to a post
     _callback_fetch("/api/comment?postID" = postID + "&email=" + email + "&msg=" + msg, on_fetched);
 }
-
+*/
 document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
         show_community("Bankstown");
