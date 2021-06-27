@@ -7,8 +7,7 @@ async function render_post(email, contents) {
     
     let promise = new Promise( (resolve, reject) => { resolve(fetch_user(email)) } );
     let result = await promise;
-    console.log(result["suburb"])
-
+    console.log("RENDERER")
     console.log(result)
     //$container.children("img, p").click();
 }
