@@ -52,7 +52,6 @@ function create_user() {
     let vacciated = 0;
     let community = "";
     let url = "/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`;
-
 }
 
 document.addEventListener("DOMContentLoaded", function(){
