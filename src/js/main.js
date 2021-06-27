@@ -36,7 +36,23 @@ function show_community() {
 
 function show_login() {
     $stream.innerHTML = "";
-    $stream.prepend(``);
+    $stream.prepend(`<div id="login">
+    <img src="../img/logoLong.png" style=" filter: invert(100%)">
+
+    <h1 style="text-align: center;">Login</h1>
+
+    <div class="enterFields">
+      <label for="firstName">Email</label>
+      <input type="text" name="firstName">
+      <br>
+      <label for="lastName">Password</label>
+      <input type="password" name="lastName">
+    </div>
+    <br>
+    <div class="centered">
+      <button id = "btnLogin" type="button" name="button">Login</button>
+    </div>
+  </div>`);
 
     $("#btnLogin").on("click", () => {
         Cookies.set("email", "alan.sandlar@gmail.com");
