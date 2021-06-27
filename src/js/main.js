@@ -1,7 +1,6 @@
-let test_email = "normal.human@gmail.com"
-let test_community = "bankstown"
 
-var cached_posts = []
+
+
 var most_recent_posts = []
 
 function render_post(post) {
@@ -29,10 +28,7 @@ function fetch_profile(email, on_fetched) {
 
 function fetch_community(community) {
     callback_fetch("/api/community?community=" + community, (response) => {
-        response.forEach((post, index) => {
-            render_post(post);
-            most_recent_posts.append(post);
-        });
+        most_recent_posts = response;
     });
 }
 
@@ -41,5 +37,9 @@ function redirect(url) {
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    if (window.location.pathname == "/") { fetch_community(test_community); }
+    if (window.location.pathname == "/") {
+        fetch_community(test_community);
+        most_recent_posts.forEach( () => render_post())
+    
+    }
 });
