@@ -1,3 +1,4 @@
+var $stream;
 
 function render_post(post) {
     // Formats and appends posts to the stream div
@@ -111,7 +112,7 @@ function _send_comment(postID, msg) {
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    var $stream = $("#stream")
+    $stream = $("#stream");
     if (window.location.pathname !== "html/about.html") {
         console.log(Cookies.get("email"));
         if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
