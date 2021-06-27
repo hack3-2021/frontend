@@ -4,7 +4,6 @@ async function render_post(email, contents) {
     let $container = $('#stream');
     $container.prepend(`<div class="post"><img><b><p class="name"></p></b><p class="body"></p></div>`);
     let $post = $container.children("div.first");
-    let user_data = {};
 
     $.ajax({
         url: "/api/profile?email=" + email,
@@ -13,7 +12,7 @@ async function render_post(email, contents) {
         "async": true,
     }).done( function (response) {
         console.log(response);
-        print(post);
+        console.log($post);
         $post.childern("img").attr("src", response["picture"]);
         $post.children("p.first").text(response["firstName"] + " " + response["lastName"]);
         $post.children("p").last().text(contents);
