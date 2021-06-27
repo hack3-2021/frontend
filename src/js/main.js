@@ -96,6 +96,7 @@ function show_login() {
         Cookies.set("community", "Bankstown");
         fetch_profile(Cookies.get("email"), (resp) => {Cookies.set("self", resp)});
         show_community();
+        console.log(Cookies.get("self"));
     });
 }
 
