@@ -2,6 +2,7 @@
 <html class="no-js" lang="">
 
 <head>
+
   <meta charset="utf-8">
   <title></title>
   <meta name="description" content="">
@@ -20,22 +21,33 @@
   <link rel="stylesheet" href="css/main.css">
 
   <meta name="theme-color" content="#fafafa">
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <p id="nojs_fallback">Your browser does not support JavaScript :(</p>
+  
 </head>
+
+<header>
+  
+</header>
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+  
+  
+  <!-- this element will have posts pushed to it -->
+  <div id="stream">
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+    <div class="post">
+      <img class="profile_picture" src="icon.png">
+      <b><p class="name">Dev Team</p></b>
+      <p class="body">Man it's lonely in here...</p>
+    </div>
+
+  </div>
+
 </body>
-
 </html>
