@@ -16,9 +16,7 @@ function render_post(post) {
       <div id="commentFeed" class="comments" style="display:hidden;">
 
         <div id="addComment">
-        <img class="profile_picture" src="icon.png">
-        <input type="text" id="newComment">
-        <button id="postComment">></button>
+        <input type="text" id="newComment"><button id="postComment">></button>
         </div>
         <br>
 
