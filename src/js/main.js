@@ -52,6 +52,7 @@ function create_user() {
     let bio = $("input[name='bio']").val();
     let phone_number = $("input[name='phoneNum']").val();
     let vaccinated = $("input[name='vaccinated']").val();
+    console.log(vaccinated);
     let community = $("input[name='suburb']").val();
     _callback_fetch("/api/profile?email=" + email, (response) => {
         alert("Email already exists");
