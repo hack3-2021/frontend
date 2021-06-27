@@ -192,18 +192,19 @@ button, #btnSignUp{
   text-align:center;
   transition: all 0.2s;
 }
+
 #addComment{
-  display: inline-block;
+  height: 50px;
   width:100%;
-  white-space: nowrap;
 }
 #newComment{
+  width:89%;
+  height:50px;
   font-size: 18px;
-  height: 50px;
-  width: 850px;
 }
 #postComment{
-  height: 50px;
-  width: 50px;
+  width:9%;
+  height:50px;
+  font-family: "Roboto", sans-serif;
   border-radius: 5px;
 }
