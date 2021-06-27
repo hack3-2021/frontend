@@ -112,7 +112,8 @@ function _send_comment(postID, msg) {
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    if (window.location.pathname == "/") {
+    if (window.location.pathname !== "html/about.html") {
+        console.log(Cookies.get("email"));
         if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
             show_login(); return;
         }
