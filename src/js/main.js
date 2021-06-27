@@ -36,6 +36,8 @@ function show_community(community) {
 function show_login() {
     $stream.innerHTML = "";
 
+
+    $("#btnSignUp").click(create_user);
 }
 
 function show_about() {
@@ -43,15 +45,23 @@ function show_about() {
 }
 
 function create_user() {
-    let email = "";
-    let first_name = "";
-    let last_name = "";
-    let picture_url = "";
-    let bio = "";
-    let phone_number = "";
-    let vacciated = 0;
-    let community = "";
-    let url = "/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`;
+    let email = $("input[name='firstName']").val();
+    let first_name = $("input[name='lastName']").val();
+    let last_name = $("input[name='email']").val();
+    let picture_url = $("input[name='profileURL']").val();
+    let bio = $("input[name='bio']").val();
+    let phone_number = $("input[name='phoneNum']").val();
+    let vacciated = $("input[name='firstName']").val();
+    let community = $("input[name='suburb']").val();
+    fetch_profile(email, (response) => {
+        if (response == "Not Found") {
+            alert("Email already exists")
+        } else {
+            _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`, (resp) => {
+                console.log(resp)
+            })
+        }
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function(){
