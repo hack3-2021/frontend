@@ -1,4 +1,3 @@
-var location = "homepage"
 var $stream = $("#stream")
 
 function render_post(post) {
@@ -29,18 +28,27 @@ function show_community(community) {
     $stream.innerHTML = "";
     $stream.appendChild(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
 
-    callback_fetch("/api/community?community=" + community, (response) => {
-        response.forEach((post, i) => render_post(port));
+    _callback_fetch("/api/community?community=" + community, (response) => {
+        response.forEach((post, i) => render_post(port))
     });
 }
 
 function show_login() {
     $stream.innerHTML = "";
-    
+
+}
+
+function create_user() {
+    let url = "/api/create_user?email=xxx@yyy&firstName=aaa&lastName=bbb&pictureLink=xxx&bio=I AM HUMAN I SWEAR&phoneNumber=0412212518&vaccinated=0&community=Bankstown";
+    let email = "";
+    let firstName = "";
+    let lastName = "";
+    let pictureLink = "";
+    let bio = "";
 }
 
 document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
-    
+        console.log();
     }
 });
