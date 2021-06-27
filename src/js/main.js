@@ -59,7 +59,11 @@ function fetch_profile(email, on_fetched) {
 
 function show_community() {
     $stream.empty();
-    $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
+    $stream.prepend(`<div class="createPost"><img class="profile_picture" src="${self["picture"]}"><input type="text" id="newPost" placeholder="What's happening?"><br><br><button id="sendPost">Send</button></div><div class="spacer"></div><div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
+
+    $stream.find("#sendPost").on("click", ()=>{
+        _send_post($stream.find("#newPost").val());
+    });
 
     _callback_fetch("/api/community?community=" + Cookies.get("community"), (response) => {
         response.forEach((post, i) => render_post(post))
@@ -142,7 +146,7 @@ function create_user() {
 
 function _send_post(msg) {
     // Sends a post to a community
-    _callback_fetch("/api/post?community=" + Cookies.get("community") + "&email=" + Cookies.get("email") + "&msg=" + msg, ()=>{}, ()=>{}, "html");
+    _callback_fetch("/api/post?community=" + Cookies.get("community") + "&email=" + Cookies.get("email") + "&msg=" + msg, ()=>{location="/";}, ()=>{}, "html");
 }
 
 function _send_comment(postID, msg) {
