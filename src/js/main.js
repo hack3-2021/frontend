@@ -1,4 +1,5 @@
 var $stream;
+var self;
 
 function render_post(post) {
     // Formats and appends posts to the stream div
@@ -11,8 +12,6 @@ function render_post(post) {
       <p class="post_body"></p>
       <hr>
 
-      <button id="commentToggle" style ="width:175px;">Show Comments</button>
-
       <div id="commentFeed" class="comments" style="display:hidden;">
 
         <div id="addComment">
@@ -23,14 +22,21 @@ function render_post(post) {
       </div>
     </div>
     `);
+
     let $post = $stream.children(":first").next();
-    $post.find("#postComment").on("click", () => {_send_comment(post["postID"], $post.find("#newComment").val())});
+    let $comments = $post.find("#commentFeed");
+
+    $post.find("#postComment").on("click", () => {
+        _send_comment(post["postID"], $post.find("#newComment").val());
+        $comments.append(`<div class="comment"><img class="profile_picture" src="${Cookies.get("self")["picture"]}"><b><p>${Cookies.get("self")["firstName"] + " " + Cookies.get("self")["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
+        $post.find("#newComment").attr("value", "");
+    });
 
     $post.find("img").attr("src", post["poster"]["picture"]);
     $post.find(".post_username").text( post["poster"]["firstName"] + " " + post["poster"]["lastName"]);
     $post.find(".post_body").text(post["msg"]);
 
-    let $comments = $post.find("#commentFeed");
+
     post["comments"].forEach((comment, i)=>{
         $comments.append(`<div class="comment"><img class="profile_picture" src="${comment["poster"]["picture"]}"><b><p>${comment["poster"]["firstName"] + " " + comment["poster"]["lastName"]}</p></b> <p>${comment["msg"]}</p></div>`);
     });
@@ -88,7 +94,8 @@ function show_login() {
     $("#btnLogin").on("click", () => {
         Cookies.set("email", "alan.sandlar@gmail.com");
         Cookies.set("community", "Bankstown");
-        show_community()
+        fetch_profile(Cookies.get("email"), (resp) => {Cookies.set("self", resp)});
+        show_community();
     });
 }
 
