@@ -15,8 +15,8 @@ function callback_fetch(url, on_fetched) {
         url: url,
         type: 'GET',
         dataType: 'json',
-        "async": true,
-    }).done(on_fetched(response));
+        "async": true
+    }).done(on_fetched);
 }
 
 function fetch_profile(email, on_fetched) {
