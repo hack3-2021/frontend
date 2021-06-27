@@ -10,7 +10,7 @@ function render_post(post) {
       <img class="profile_picture">
       <b><p class="post_username"></p></b>
       <p class="post_body"></p>
-      <hr>
+      <hr><br>
 
       <div id="commentFeed" class="comments">
         <div id="addComment">
@@ -28,7 +28,7 @@ function render_post(post) {
 
     $post.find("#postComment").on("click", () => {
         _send_comment(post["postID"], $post.find("#newComment").val());
-        $comments.append(`<div class="comment"><img class="profile_picture" src="${Cookies.get("self")["picture"]}"><b><p>${Cookies.get("self")["firstName"] + " " + Cookies.get("self")["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
+        $comments.append(`<br><div class="comment"><img class="profile_picture" src="${Cookies.get("self")["picture"]}"><b><p>${Cookies.get("self")["firstName"] + " " + Cookies.get("self")["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
         $post.find("#newComment").attr("value", "");
     });
 
@@ -38,7 +38,7 @@ function render_post(post) {
 
 
     post["comments"].forEach((comment, i)=>{
-        $comments.append(`<div class="comment"><img class="profile_picture" src="${comment["poster"]["picture"]}"><b><p>${comment["poster"]["firstName"] + " " + comment["poster"]["lastName"]}</p></b> <p>${comment["msg"]}</p></div>`);
+        $comments.append(`<br><div class="comment"><img class="profile_picture" src="${comment["poster"]["picture"]}"><b><p>${comment["poster"]["firstName"] + " " + comment["poster"]["lastName"]}</p></b> <p>${comment["msg"]}</p></div>`);
     });
 }
 
@@ -94,9 +94,8 @@ function show_login() {
     $("#btnLogin").on("click", () => {
         Cookies.set("email", "alan.sandlar@gmail.com");
         Cookies.set("community", "Bankstown");
-        fetch_profile(Cookies.get("email"), (resp) => {Cookies.set("self", resp)});
+        fetch_profile(Cookies.get("email"), (resp) => {Cookies.set("self", resp); console.log(Cookies.get("self"));});
         show_community();
-        console.log(Cookies.get("self"));
     });
 }
 
