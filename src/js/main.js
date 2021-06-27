@@ -1,21 +1,40 @@
 let test_email = "normal.human@gmail.com"
+let test_community = "bankstown"
 
-async function render_post(email, contents) {
+function render_post(post) {
     let $container = $('#stream');
-    $container.prepend(`<div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
+    $container.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
     let $post = $container.children(":first");
+    $post.find("img").attr("src", post["poster"]["picture"]);
+    $post.find(".post_username").text( post["poster"]["firstName"] + " " + post["poster"]["lastName"]);
+    $post.find(".post_body").text(post["msg"]);
+}
 
+function callback_fetch(url, on_fetched) {
     $.ajax({
-        url: "/api/profile?email=" + email,
+        url: url,
         type: 'GET',
         dataType: 'json',
         "async": true,
-    }).done( function (response) {
-        console.log($post.html());
-        $post.find("img").attr("src", response["picture"]);
-        $post.find(".post_username").text(response["firstName"] + " " + response["lastName"]);
-        $post.find(".post_body").text(contents);
+    }).done(on_fetched(response));
+}
+
+function fetch_profile(email, on_fetched) {
+    callback_fetch("/api/profile?email=" + email, on_fetched)
+}
+
+function fetch_community(community) {
+    callback_fetch("/api/community?community=" + community, (response) => {
+        response.forEach((post, index) => {
+            render_post(post);
+        });
     });
 }
 
-render_post(test_email, "bing bong");
+function redirect(url) {
+
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    if (window.location.pathname == "/") { fetch_community(test_community) }
+});
