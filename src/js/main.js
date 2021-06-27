@@ -3,7 +3,7 @@ var self;
 
 function render_post(post) {
     // Formats and appends posts to the stream div
-    $stream.prepend(`
+    $stream.children(":first").after(`
     <div class="spacer"></div>
 
     <div class="post">
@@ -23,7 +23,7 @@ function render_post(post) {
     </div>
     `);
 
-    let $post = $stream.children("*:eq(2)");
+    let $post = $stream.children(":eq(2)");
     let $comments = $post.find("#commentFeed");
 
     $post.find("#postComment").on("click", () => {
