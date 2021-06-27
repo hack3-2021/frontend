@@ -11,7 +11,7 @@ async function render_post(email, contents) {
         dataType: 'json',
         "async": true,
     }).done( function (response) {
-        console.log(response);
+        console.log($post.html());
         $post.find("img").attr("src", response["picture"]);
         $post.find(".post_username").text(response["firstName"] + " " + response["lastName"]);
         $post.find(".post_body").text(contents);
