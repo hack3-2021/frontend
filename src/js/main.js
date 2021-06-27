@@ -37,7 +37,7 @@ function show_login() {
     $stream.innerHTML = "";
 
 
-    $("#btnSignUp").click(create_user);
+    $("#btnSignUp").click(create_user());
 }
 
 function show_about() {
