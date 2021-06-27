@@ -1,12 +1,10 @@
-var $stream = $("#stream")
-//Cookies.get('name') 
-
+var $stream;
 
 function render_post(post) {
     // Formats and appends posts to the stream div
-    console.log(post);
     $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
     let $post = $stream.children(":first").next();
+    console.log($post.html());
     $post.find("img").attr("src", post["poster"]["picture"]);
     $post.find(".post_username").text( post["poster"]["firstName"] + " " + post["poster"]["lastName"]);
     $post.find(".post_body").text(post["msg"]);
@@ -22,29 +20,61 @@ function _callback_fetch(url, on_fetched, on_fail=(req)=>console.log("Callback f
     }).done(on_fetched).fail(on_fail);
 }
 
-function fetch_profile(email, on_fetched, ) {
+function fetch_profile(email, on_fetched) {
     // Grabs the contents of a profile
     _callback_fetch("/api/profile?email=" + email, on_fetched);
 }
 
-function show_community(community) {
-    $stream.innerHTML = "";
+function show_community() {
+    $stream.empty();
     $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
 
-    _callback_fetch("/api/community?community=" + community, (response) => {
+    _callback_fetch("/api/community?community=" + Cookies.get("community"), (response) => {
         response.forEach((post, i) => render_post(post))
     });
 }
 
-function show_signup() {
-    $stream.innerHTML = "";
-    $stream.prepend(`<div id="signUp">       <h1 style="text-align: center;">Sign Up</h1>        <div class="enterFields">         <label for="firstName">First Name</label>         <input type="text" name="firstName">         <br>         <label for="lastName">Last Name</label>         <input type="text" name="lastName">         <br>         <label for="email">Email</label>         <input type="email" name="email">         <br>         <label for="bio">Biography</label>         <input type="text" name="bio">         <br>         <label for="profileURL">Profile Picture URL</label>         <input type="url" name="profileURL">         <br>         <label for="phoneNum">Phone Number</label>         <input type="text" name="phoneNum">         <br>         <label for="suburb">Suburb</label>         <input type="text" name="suburb">         <br>         <label for="vaccinated">Covid-19 Vaccinated</label>         <select name="vaccinated">           <option value="0" selected>Partially or Unvaccinated</option>           <option value="1">Vaccinated</option>         </select>       </div>       <br>       <div class="centered">         <button id = "btnSignUp" type="button" name="button">Sign up</button>       </div>     </div>`);
+function show_login() {
+    $stream.empty();
+    $stream.prepend(`<div id="login">
+    <img src="../img/logoLong.png" style=" filter: invert(100%)">
 
-    $("#btnSignUp").click(create_user());
+    <h1 style="text-align: center;">Login</h1>
+
+    <div class="enterFields">
+      <label for="firstName">Email</label>
+      <input type="text" name="firstName">
+      <br>
+      <label for="lastName">Password</label>
+      <input type="password" name="lastName">
+    </div>
+    <br>
+    <div class="centered">
+      <b><p id="signUpRedirect">Or Create and Account</p></b>
+      <button id = "btnLogin" type="button" name="button">Login</button>
+    </div>
+  </div>`);
+
+    $("#signUpRedirect").on("click", () => {
+        show_signup();
+    });
+
+    $("#btnLogin").on("click", () => {
+        Cookies.set("email", "alan.sandlar@gmail.com");
+        Cookies.set("community", "Bankstown");
+        show_community()
+    });
+}
+
+function show_signup() {
+    $stream.empty();
+    $stream.prepend(`<div id="signUp"><h1 style="text-align: center;">Sign Up</h1><div class="enterFields"><label for="firstName">First Name</label><input type="text" name="firstName"><br><label for="lastName">Last Name</label><input type="text" name="lastName"><br><label for="email">Email</label><input type="email" name="email"><br><label for="bio">Biography</label><input type="text" name="bio"><br><label for="profileURL">Profile Picture URL</label><input type="url" name="profileURL"><br><label for="phoneNum">Phone Number</label><input type="text" name="phoneNum"><br><label for="suburb">Suburb</label><input type="text" name="suburb"><br><label for="vaccinated">Covid-19 Vaccinated</label><select name="vaccinated"><option value="0" selected>Partially or Unvaccinated</option><option value="1">Vaccinated</option></select></div><br><div class="centered"><button id = "btnSignUp" type="button" name="button">Sign up</button></div></div>`);
+
+    $("#btnSignUp").on("click", create_user);
 }
 
 function show_about() {
-    $stream.innerHTML = "";
+    $stream.empty();
 }
 
 function create_user() {
@@ -74,9 +104,32 @@ function create_user() {
     });
 }
 
+
+function _send_post(msg) {
+    // Sends a post to a community
+    _callback_fetch("/api/post?community=" + Cookies.get("community") + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
+}
+
+function _send_comment(postID, msg) {
+    // Sends a comment to a post
+    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
+}
+
+
 document.addEventListener("DOMContentLoaded", function(){
-    if (window.location.pathname == "/") {
-        show_community("Bankstown");
-    }
+
+    _callback_fetch("/api/ping", ()=>{
+        $stream = $("#stream");
+        if (window.location.pathname !== "html/about.html") {
+            console.log(Cookies.get("email"));
+            if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
+                show_login();
+            } else {
+                show_community();
+            }
+            
+        }
+    });
    
 });
+
