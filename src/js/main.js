@@ -53,7 +53,7 @@ function create_user() {
     let phone_number = $("input[name='phoneNum']").val();
     let vacciated = $("input[name='firstName']").val();
     let community = $("input[name='suburb']").val();
-    _callback_fetch(email, (response) => {
+    _callback_fetch("/api/profile?email=" + email, (response) => {
         alert("Email already exists");
     }, (jqXHR, textStatus, errorThrown) => {
         if (errorThrown=="Not Found") { // User doesn't exist bbgurl
