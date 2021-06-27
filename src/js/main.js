@@ -24,7 +24,7 @@ function render_post(post) {
     </div>
     `);
     let $post = $stream.children(":first").next();
-    $post.find("#postComment").on("click", () => {_send_comment(post["postID"])});
+    $post.find("#postComment").on("click", () => {_send_comment(post["postID"], $post.find("#newComment").val())});
     $post.find("#commentToggle").on("click", () => {
         if ($post.find("#commentFeed").css("display") == "hidden") {$post.find("#commentFeed").css("display", "block")}
         else {$post.find("#commentFeed").css("display", "hidden")}
@@ -103,6 +103,10 @@ function show_signup() {
     $stream.prepend(`<div id="signUp"><h1 style="text-align: center;">Sign Up</h1><div class="enterFields"><label for="firstName">First Name</label><input type="text" name="firstName"><br><label for="lastName">Last Name</label><input type="text" name="lastName"><br><label for="email">Email</label><input type="email" name="email"><br><label for="bio">Biography</label><input type="text" name="bio"><br><label for="profileURL">Profile Picture URL</label><input type="url" name="profileURL"><br><label for="phoneNum">Phone Number</label><input type="text" name="phoneNum"><br><label for="suburb">Suburb</label><input type="text" name="suburb"><br><label for="vaccinated">Covid-19 Vaccinated</label><select name="vaccinated"><option value="0" selected>Partially or Unvaccinated</option><option value="1">Vaccinated</option></select></div><br><div class="centered"><button id = "btnSignUp" type="button" name="button">Sign up</button></div></div>`);
 
     $("#btnSignUp").on("click", create_user);
+}
+
+function show_profile() {
+
 }
 
 function show_about() {
