@@ -54,11 +54,12 @@ function create_user() {
     let vacciated = $("input[name='firstName']").val();
     let community = $("input[name='suburb']").val();
     fetch_profile(email, (response) => {
+        console.log(response);
         if (response == "Not Found") {
-            alert("Email already exists")
+            alert("Email already exists");
         } else {
             _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`, (resp) => {
-                console.log(resp)
+                console.log(resp);
             })
         }
     });
