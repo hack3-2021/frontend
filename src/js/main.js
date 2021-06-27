@@ -1,12 +1,15 @@
 var $stream = $("#stream")
-//Cookies.get('name') 
+
+// Initialisation of cookies
+Cookies.get('email')
+Cookies.get('bang') 
 
 
 function render_post(post) {
     // Formats and appends posts to the stream div
-    console.log(post);
     $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
     let $post = $stream.children(":first").next();
+    console.log($post.html());
     $post.find("img").attr("src", post["poster"]["picture"]);
     $post.find(".post_username").text( post["poster"]["firstName"] + " " + post["poster"]["lastName"]);
     $post.find(".post_body").text(post["msg"]);
@@ -72,6 +75,16 @@ function create_user() {
             }, "html")
         }
     });
+}
+
+function fetch_send_post(community, email, msg, on_fetched, ) {
+    // Sends a post to a community
+    _callback_fetch("/api/post?community=" + community + "&email=" + email + "&msg=" + msg, on_fetched);
+}
+
+function fetch_send_comment(postID, email, msg, on_fetched, ) {
+    // Sends a comment to a post
+    _callback_fetch("/api/comment?postID" = postID + "&email=" + email + "&msg=" + msg, on_fetched);
 }
 
 document.addEventListener("DOMContentLoaded", function(){
