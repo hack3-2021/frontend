@@ -82,6 +82,7 @@ button:active, #btnSignUp:active {
   height: 50px;
 }
 
+
 .spacer {
   padding: 15px;
 }
@@ -156,6 +157,31 @@ text-align: justify;
   width: 15%;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
+}
+
+#profile {
+  max-width: 600px;
+  background-color: #f2f2f2;
+  margin:auto;
+  width:50%;
+  padding: 10px;
+}
+
+#profile img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  width: 20%;
+  height: 20%;
+}
+
+#profile h1{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 50px;
 }
 
 
