@@ -20,6 +20,13 @@ body{
   margin: 0;
   padding: 0;
   background-image: url("../img/bg.png");
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {
