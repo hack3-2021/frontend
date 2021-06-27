@@ -12,8 +12,8 @@ async function render_post(email, contents) {
         dataType: 'json',
         "async": true,
     }).done( function (response) {
-        $container.chilren("img").attr("src", response["picture"]);
-        $container.chilren("p.first").text(response["firstName"] + " " + resonse["lastName"]);
+        $container.children("img").attr("src", response["picture"]);
+        $container.children("p.first").text(response["firstName"] + " " + resonse["lastName"]);
         $container.children("p").last().text(contents)
     })
 }
