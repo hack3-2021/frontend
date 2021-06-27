@@ -1,27 +1,21 @@
 let test_email = "normal.human@gmail.com"
 
 async function render_post(email, contents) {
-
     let $container = $('#stream');
-    $container.prepend(`<div class="post"><img><b><p class="name"></p></b><p class="body"></p></div>`);
-    
-    let promise = new Promise( (resolve, reject) => { resolve(fetch_user(email)) } );
-    let result = await promise;
-    console.log(result);
-    //$container.children("img, p").click();
-}
+    $container.prepend(`<div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
+    let $post = $container.children(":first");
 
-function fetch_user(email) {
-    let user_data = {};
     $.ajax({
         url: "/api/profile?email=" + email,
         type: 'GET',
         dataType: 'json',
         "async": true,
     }).done( function (response) {
-        user_data = response;
-    })
-    return user_data;
+        console.log($post.html());
+        $post.find("img").attr("src", response["picture"]);
+        $post.find(".post_username").text(response["firstName"] + " " + response["lastName"]);
+        $post.find(".post_body").text(contents);
+    });
 }
 
-render_post(test_email, "bing bong")
+render_post(test_email, "bing bong");
