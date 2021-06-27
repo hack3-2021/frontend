@@ -1,19 +1,17 @@
-
-
-
-var most_recent_posts = []
+var location = "homepage"
+var $stream = $("#stream")
 
 function render_post(post) {
-    let $container = $('#stream');
-    $container.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
-    let $post = $container.children(":first").next();
-    console.log($post.html());
+    // Formats and appends posts to the stream div
+    $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
+    let $post = $stream.children(":first").next();
     $post.find("img").attr("src", post["poster"]["picture"]);
     $post.find(".post_username").text( post["poster"]["firstName"] + " " + post["poster"]["lastName"]);
     $post.find(".post_body").text(post["msg"]);
 }
 
-function callback_fetch(url, on_fetched) {
+function _callback_fetch(url, on_fetched) {
+    // Fetches JSON from the specified URL, parses result to on_fetched when done
     $.ajax({
         url: url,
         type: 'GET',
@@ -23,23 +21,26 @@ function callback_fetch(url, on_fetched) {
 }
 
 function fetch_profile(email, on_fetched) {
-    callback_fetch("/api/profile?email=" + email, on_fetched);
+    // Grabs the contents of a profile
+    _callback_fetch("/api/profile?email=" + email, on_fetched);
 }
 
-function fetch_community(community) {
+function show_community(community) {
+    $stream.innerHTML = "";
+    $stream.appendChild(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
+
     callback_fetch("/api/community?community=" + community, (response) => {
-        most_recent_posts = response;
+        response.forEach((post, i) => render_post(port));
     });
 }
 
-function redirect(url) {
-
+function show_login() {
+    $stream.innerHTML = "";
+    
 }
 
 document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
-        fetch_community(test_community);
-        most_recent_posts.forEach( () => render_post())
     
     }
 });
