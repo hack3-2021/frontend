@@ -12,10 +12,10 @@ function render_post(post) {
       <p class="post_body"></p>
       <hr>
 
-      <div id="commentFeed" class="comments" style="display:hidden;">
-
+      <div id="commentFeed" class="comments">
         <div id="addComment">
-        <input type="text" id="newComment"><button id="postComment">></button>
+          <input type="text" id="newComment" placeholder="write a comment...">
+          <button id="postComment">></button>
         </div>
         <br>
 
@@ -122,14 +122,12 @@ function create_user() {
     let bio = $("input[name='bio']").val();
     let phone_number = $("input[name='phoneNum']").val();
     let vaccinated = 0;
-    console.log(vaccinated);
     let community = $("input[name='suburb']").val();
     _callback_fetch("/api/profile?email=" + email, (response) => {
         alert("Email already exists");
     }, (jqXHR, textStatus, errorThrown) => {
         if (errorThrown=="Not Found") { // User doesn't exist bbgurl
             _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vaccinated}&community=${community}`, (resp) => {
-                console.log(resp);
             }, (x,y, errorThrown) => {
                 alert("ERROR: Our server didn't like some of your inputs, who knows why. Our Back-end Dev refuses to implement meaninful errors. Try hitting send again?");
                 console.log("Error while creating user: ");
