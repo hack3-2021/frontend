@@ -43,6 +43,20 @@ button:active, #btnSignUp:active {
   transform: translateY(2px);
 }
 
+label{
+  font-weight: bold;
+}
+
+input, select{
+  text-indent: 10px;
+  font-size: 15px;
+  height: 34px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  width: 100%;
+  background: white;
+}
+
 .header {
   display: flex;
   justify-content: left;
@@ -132,8 +146,6 @@ text-align: justify;
   padding: 10px;
 }
 
-
-
 #login img{
   display: block;
   margin-left: auto;
@@ -160,7 +172,6 @@ text-align: justify;
   padding-bottom: 2.5%;
 }
 
-
 button, #btnSignUp{
   height:40px;
   width: 100%;
@@ -173,16 +184,27 @@ button, #btnSignUp{
   transition: all 0.2s;
 }
 
-label{
-  font-weight: bold;
+#newComment{
+  width:100%;
+  height:50px;
+  border-radius: 5px;
 }
-
-input, select{
-  text-indent: 10px;
-  font-size: 15px;
-  height: 34px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  width: 100%;
-  background: white;
+#postComment{
+  height:50px;
+  border-radius: 5px;
+  width:50px;
+}
+#cImage{
+  float: left;
+}
+#cInput{
+  width:80%;
+}
+#cPost{
+  float: right;
+}
+#cImage,#cInput,#cPost{
+  display:flex;
+  height: 50px;
+  display: inline-block;
 }
