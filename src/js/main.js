@@ -9,14 +9,14 @@ function render_post(post) {
     $post.find(".post_body").text(post["msg"]);
 }
 
-function _callback_fetch(url, on_fetched) {
+function _callback_fetch(url, on_fetched, on_fail=(req)=>console.log("Callback fetch failed")) {
     // Fetches JSON from the specified URL, parses result to on_fetched when done
     $.ajax({
         url: url,
         type: 'GET',
         dataType: 'json',
         "async": true
-    }).done(on_fetched);
+    }).done(on_fetched).fail(on_fail);
 }
 
 function fetch_profile(email, on_fetched) {
