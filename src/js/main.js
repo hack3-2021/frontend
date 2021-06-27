@@ -27,9 +27,9 @@ function render_post(post) {
     let $comments = $post.find("#commentFeed");
 
     $post.find("#postComment").on("click", () => {
-        _send_comment(post["postID"], $post.find("#newComment").val(), ()=>{location="/";});
-        //$comments.append(`<br><div class="comment"><img class="profile_picture" src="${self["picture"]}"><b><p>${self["firstName"] + " " + self["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
-        //$post.find("#newComment").attr("value", "");
+        _send_comment(post["postID"], $post.find("#newComment").val());
+        $comments.append(`<br><div class="comment"><img class="profile_picture" src="${self["picture"]}"><b><p>${self["firstName"] + " " + self["lastName"]}</p></b> <p>${$post.find("#newComment").val()}</p></div>`);
+        $post.find("#newComment").attr("value", "");
     });
 
     $post.find("img").attr("src", post["poster"]["picture"]);
@@ -142,12 +142,12 @@ function create_user() {
 
 function _send_post(msg) {
     // Sends a post to a community
-    _callback_fetch("/api/post?community=" + Cookies.get("community") + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
+    _callback_fetch("/api/post?community=" + Cookies.get("community") + "&email=" + Cookies.get("email") + "&msg=" + msg, ()=>{}, ()=>{}, "html");
 }
 
-function _send_comment(postID, msg, callback) {
+function _send_comment(postID, msg) {
     // Sends a comment to a post
-    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, callback);
+    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, ()=>{}, ()=>{}, "html");
 }
 
 
