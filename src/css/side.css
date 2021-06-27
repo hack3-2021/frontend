@@ -171,6 +171,10 @@ button, #btnSignUp{
   transition: all 0.2s;
 }
 
+label{
+  font-weight: bold;
+}
+
 input, select{
   text-indent: 10px;
   font-size: 15px;
