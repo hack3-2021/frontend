@@ -107,7 +107,7 @@ function _send_post(msg) {
 
 function _send_comment(postID, msg) {
     // Sends a comment to a post
-    _callback_fetch("/api/comment?postID" = postID + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
+    _callback_fetch("/api/comment?postID=" + postID + "&email=" + Cookies.get("email") + "&msg=" + msg, () => {});
 }
 
 
