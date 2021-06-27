@@ -160,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function(){
             if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
                 show_login();
             } else {
+                fetch_profile(Cookies.get("email"), (resp) => {self = resp;});
                 show_community();
             }
             
