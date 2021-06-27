@@ -28,7 +28,7 @@ function fetch_profile(email, on_fetched, ) {
 
 function show_community(community) {
     $stream.innerHTML = "";
-    $stream.appendChild(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
+    $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
 
     _callback_fetch("/api/community?community=" + community, (response) => {
         response.forEach((post, i) => render_post(port))
@@ -37,7 +37,7 @@ function show_community(community) {
 
 function show_signup() {
     $stream.innerHTML = "";
-    $stream.appendChild(`<div id="signUp">       <h1 style="text-align: center;">Sign Up</h1>        <div class="enterFields">         <label for="firstName">First Name</label>         <input type="text" name="firstName">         <br>         <label for="lastName">Last Name</label>         <input type="text" name="lastName">         <br>         <label for="email">Email</label>         <input type="email" name="email">         <br>         <label for="bio">Biography</label>         <input type="text" name="bio">         <br>         <label for="profileURL">Profile Picture URL</label>         <input type="url" name="profileURL">         <br>         <label for="phoneNum">Phone Number</label>         <input type="text" name="phoneNum">         <br>         <label for="suburb">Suburb</label>         <input type="text" name="suburb">         <br>         <label for="vaccinated">Covid-19 Vaccinated</label>         <select name="vaccinated">           <option value="0" selected>Partially or Unvaccinated</option>           <option value="1">Vaccinated</option>         </select>       </div>       <br>       <div class="centered">         <button id = "btnSignUp" type="button" name="button">Sign up</button>       </div>     </div>`);
+    $stream.prepend(`<div id="signUp">       <h1 style="text-align: center;">Sign Up</h1>        <div class="enterFields">         <label for="firstName">First Name</label>         <input type="text" name="firstName">         <br>         <label for="lastName">Last Name</label>         <input type="text" name="lastName">         <br>         <label for="email">Email</label>         <input type="email" name="email">         <br>         <label for="bio">Biography</label>         <input type="text" name="bio">         <br>         <label for="profileURL">Profile Picture URL</label>         <input type="url" name="profileURL">         <br>         <label for="phoneNum">Phone Number</label>         <input type="text" name="phoneNum">         <br>         <label for="suburb">Suburb</label>         <input type="text" name="suburb">         <br>         <label for="vaccinated">Covid-19 Vaccinated</label>         <select name="vaccinated">           <option value="0" selected>Partially or Unvaccinated</option>           <option value="1">Vaccinated</option>         </select>       </div>       <br>       <div class="centered">         <button id = "btnSignUp" type="button" name="button">Sign up</button>       </div>     </div>`);
 
     $("#btnSignUp").click(create_user());
 }
