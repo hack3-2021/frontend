@@ -2,12 +2,43 @@ var $stream;
 
 function render_post(post) {
     // Formats and appends posts to the stream div
-    $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture"><b><p class="post_username"></p></b><p class="post_body"></p></div>`);
+    $stream.prepend(`
+    <div class="spacer"></div>
+
+    <div class="post">
+      <img class="profile_picture">
+      <b><p class="post_username"></p></b>
+      <p class="post_body"></p>
+      <hr>
+
+      <button id="commentToggle" style ="width:175px;">Show Comments</button>
+
+      <div id="commentFeed" class="comments" style="display:hidden;">
+
+        <div id="addComment" class="comments">
+          <input type="text" id="newComment"> <button id="postComment">Post Comment</button>
+        </div>
+
+      </div>
+    </div>
+    `);
     let $post = $stream.children(":first").next();
+    $post.find("#postComment").on("click", () => {_send_comment(post["postID"])});
+    $post.find("#commentToggle").on("click", () => {
+        if ($post.find("#commentFeed").css("display") == "hidden") {$post.find("#commentFeed").css("display", "block")}
+        else {$post.find("#commentFeed").css("display", "hidden")}
+    });
+
     console.log($post.html());
+
     $post.find("img").attr("src", post["poster"]["picture"]);
     $post.find(".post_username").text( post["poster"]["firstName"] + " " + post["poster"]["lastName"]);
     $post.find(".post_body").text(post["msg"]);
+
+    let $comments = $post.find("#commentFeed");
+    post["comments"].forEach((comment, i)=>{
+        $comments.append(`<div class="comment"><img class="profile_picture" src="${comment["poster"]["picture"]}"><b><p>${comment["poster"]["firstName"] + " " + comment["poster"]["lastName"]}</p></b> <p>${comment["msg"]}</p></div>`);
+    });
 }
 
 function _callback_fetch(url, on_fetched, on_fail=(req)=>console.log("Callback fetch failed"), dataType = 'json') {
