@@ -25,7 +25,7 @@ function _callback_fetch(url, on_fetched, on_fail=(req)=>console.log("Callback f
     }).done(on_fetched).fail(on_fail);
 }
 
-function fetch_profile(email, on_fetched, ) {
+function fetch_profile(email, on_fetched) {
     // Grabs the contents of a profile
     _callback_fetch("/api/profile?email=" + email, on_fetched);
 }
