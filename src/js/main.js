@@ -38,13 +38,21 @@ function show_login() {
 
 }
 
+function show_about() {
+    $stream.innerHTML = "";
+}
+
 function create_user() {
-    let url = "/api/create_user?email=xxx@yyy&firstName=aaa&lastName=bbb&pictureLink=xxx&bio=I AM HUMAN I SWEAR&phoneNumber=0412212518&vaccinated=0&community=Bankstown";
     let email = "";
-    let firstName = "";
-    let lastName = "";
-    let pictureLink = "";
+    let first_name = "";
+    let last_name = "";
+    let picture_url = "";
     let bio = "";
+    let phone_number = "";
+    let vacciated = 0;
+    let community = "";
+    let url = "/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vacciated}&community=${community}`;
+
 }
 
 document.addEventListener("DOMContentLoaded", function(){
