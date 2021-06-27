@@ -67,6 +67,7 @@ function create_user() {
 
 document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
-        $("#btnSignUp").click(create_user());
+        console.log();
     }
+    $("#btnSignUp").click(create_user());
 });
