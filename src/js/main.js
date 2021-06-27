@@ -1,4 +1,6 @@
 var $stream = $("#stream")
+//Cookies.get('name') 
+
 
 function render_post(post) {
     // Formats and appends posts to the stream div
@@ -73,7 +75,7 @@ function create_user() {
 
 document.addEventListener("DOMContentLoaded", function(){
     if (window.location.pathname == "/") {
-        console.log();
+        show_community("Bankstown");
     }
     $("#btnSignUp").click(create_user());
 });
