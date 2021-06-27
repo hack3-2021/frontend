@@ -25,12 +25,6 @@ function render_post(post) {
     `);
     let $post = $stream.children(":first").next();
     $post.find("#postComment").on("click", () => {_send_comment(post["postID"], $post.find("#newComment").val())});
-    $post.find("#commentToggle").on("click", () => {
-        if ($post.find("#commentFeed").css("display") == "hidden") {$post.find("#commentFeed").css("display", "block")}
-        else {$post.find("#commentFeed").css("display", "hidden")}
-    });
-
-    console.log($post.html());
 
     $post.find("img").attr("src", post["poster"]["picture"]);
     $post.find(".post_username").text( post["poster"]["firstName"] + " " + post["poster"]["lastName"]);
