@@ -26,7 +26,7 @@ function fetch_profile(email, on_fetched) {
 }
 
 function show_community() {
-    $stream.innerHTML = "";
+    $stream.empty();
     $stream.prepend(`<div class="spacer"></div><div class="post"><img class="profile_picture" src="icon.png"><b><p class="post_username">Dev Team</p></b><p class="post_body">Man it's lonely down here...</p><hr></div>`);
 
     _callback_fetch("/api/community?community=" + Cookies.get("community"), (response) => {
@@ -35,7 +35,7 @@ function show_community() {
 }
 
 function show_login() {
-    $stream.innerHTML = "";
+    $stream.empty();
     $stream.prepend(`<div id="login">
     <img src="../img/logoLong.png" style=" filter: invert(100%)">
 
@@ -50,9 +50,14 @@ function show_login() {
     </div>
     <br>
     <div class="centered">
+      <b><p id="signUpRedirect">Or Create and Account</p></b>
       <button id = "btnLogin" type="button" name="button">Login</button>
     </div>
   </div>`);
+
+    $("#signUpRedirect").on("click", () => {
+        show_signup();
+    });
 
     $("#btnLogin").on("click", () => {
         Cookies.set("email", "alan.sandlar@gmail.com");
@@ -62,14 +67,14 @@ function show_login() {
 }
 
 function show_signup() {
-    $stream.innerHTML = "";
+    $stream.empty();
     $stream.prepend(`<div id="signUp"><h1 style="text-align: center;">Sign Up</h1><div class="enterFields"><label for="firstName">First Name</label><input type="text" name="firstName"><br><label for="lastName">Last Name</label><input type="text" name="lastName"><br><label for="email">Email</label><input type="email" name="email"><br><label for="bio">Biography</label><input type="text" name="bio"><br><label for="profileURL">Profile Picture URL</label><input type="url" name="profileURL"><br><label for="phoneNum">Phone Number</label><input type="text" name="phoneNum"><br><label for="suburb">Suburb</label><input type="text" name="suburb"><br><label for="vaccinated">Covid-19 Vaccinated</label><select name="vaccinated"><option value="0" selected>Partially or Unvaccinated</option><option value="1">Vaccinated</option></select></div><br><div class="centered"><button id = "btnSignUp" type="button" name="button">Sign up</button></div></div>`);
 
     $("#btnSignUp").on("click", create_user);
 }
 
 function show_about() {
-    $stream.innerHTML = "";
+    $stream.empty();
 }
 
 function create_user() {
@@ -112,18 +117,19 @@ function _send_comment(postID, msg) {
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    $stream = $("#stream");
-    if (window.location.pathname !== "html/about.html") {
-        console.log(Cookies.get("email"));
-        if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
-            show_login();
-        } else {
-            show_community();
-        }
-        
-    }
 
-    
+    _callback_fetch("/api/ping", ()=>{
+        $stream = $("#stream");
+        if (window.location.pathname !== "html/about.html") {
+            console.log(Cookies.get("email"));
+            if (Cookies.get("email") == undefined || Cookies.get("community") == undefined){
+                show_login();
+            } else {
+                show_community();
+            }
+            
+        }
+    });
    
 });
 
