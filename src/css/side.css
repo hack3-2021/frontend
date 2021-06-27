@@ -30,7 +30,7 @@ a {
 }
 
 button {
-  
+
 }
 
 .header {
@@ -94,7 +94,9 @@ hr {
   margin:auto;
   width:80%;
   padding: 10px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #login {
