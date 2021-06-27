@@ -13,7 +13,7 @@ async function render_post(email, contents) {
         "async": true,
     }).done( function (response) {
         $container.children("img").attr("src", response["picture"]);
-        $container.children("p.first").text(response["firstName"] + " " + resonse["lastName"]);
+        $container.children("p.first").text(response["firstName"] + " " + response["lastName"]);
         $container.children("p").last().text(contents)
     })
 }
