@@ -91,12 +91,6 @@ html.js>body>p#nojs_fallback {
   display: none;
 }
 
-img.profile_picture {
-  border-radius: 50%;
-  max-width: 50px;
-  max-height: 50px;
-}
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
