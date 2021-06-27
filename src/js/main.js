@@ -9,12 +9,12 @@ function render_post(post) {
     $post.find(".post_body").text(post["msg"]);
 }
 
-function _callback_fetch(url, on_fetched, on_fail=(req)=>console.log("Callback fetch failed")) {
+function _callback_fetch(url, on_fetched, on_fail=(req)=>console.log("Callback fetch failed"), dataType = 'json') {
     // Fetches JSON from the specified URL, parses result to on_fetched when done
     $.ajax({
         url: url,
         type: 'GET',
-        dataType: 'json',
+        dataType: dataType,
         "async": true
     }).done(on_fetched).fail(on_fail);
 }
@@ -66,7 +66,7 @@ function create_user() {
                 console.log(errorThrown);
                 console.log("With URL string: ");
                 console.log("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vaccinated}&community=${community}`);
-            })
+            }, "html")
         }
     });
 }
