@@ -29,6 +29,10 @@ a {
   color: #f5f5f5;
 }
 
+button {
+  
+}
+
 .header {
   display: flex;
   justify-content: left;
@@ -90,4 +94,14 @@ hr {
   margin:auto;
   width:80%;
   padding: 10px;
+}
+
+#login {
+  background: #f5f5f5;
+  margin:auto;
+  width:80%;
+  padding: 10px;
+}
+.enterFields{
+
 }
