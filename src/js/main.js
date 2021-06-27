@@ -86,7 +86,7 @@ function show_login() {
     </div>
     <br>
     <div class="centered">
-      <b><p id="signUpRedirect">Create an Account</p></b>
+      <b><p id="signUpRedirect"><u>Create an Account</u></p></b>
       <button id = "btnLogin" type="button" name="button">Login</button>
     </div>
   </div>`);
