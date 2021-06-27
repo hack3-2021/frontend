@@ -138,6 +138,16 @@ text-align: justify;
   padding: 10px;
 }
 
+#signUp img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}
+
+
 button, #btnSignUp{
   height:40px;
   width: 100%;
