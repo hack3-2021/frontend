@@ -134,6 +134,7 @@ function create_user() {
             _callback_fetch("/api/create_user?" + `email=${email}&firstName=${first_name}&lastName=${last_name}&pictureLink=${picture_url}&bio=${bio}&phoneNumber=${phone_number}&vaccinated=${vaccinated}&community=${community}`, (resp) => {
                 Cookies.set("email", email);
                 Cookies.set("community", community);
+                location = "/";
             },
             (x,y, errorThrown) => {
                 alert("ERROR: Our server didn't like some of your inputs, who knows why. Our Back-end Dev refuses to implement meaninful errors. Try hitting send again?");
