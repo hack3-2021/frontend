@@ -122,11 +122,7 @@ padding-right: 10%;
 padding-top: 2.5%;
 padding-bottom: 2.5%;
 text-align: justify;
-
 }
-
-
-
 
 #login {
   background: #f5f5f5;
@@ -135,11 +131,10 @@ text-align: justify;
   padding: 10px;
 }
 #signUp {
-  background: #f5f5f5;
   margin:auto;
   width:80%;
   padding: 10px;
 }
-.enterFields{
-
+input{
+  background: #f5f5f5;
 }
