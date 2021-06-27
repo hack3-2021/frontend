@@ -140,7 +140,7 @@ text-align: justify;
   transition: all 0.2s;
 }
 
-input{
+input, select{
   font-size: 13px;
   height: 34px;
   border: 1px solid #aaa;
