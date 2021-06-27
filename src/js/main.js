@@ -26,7 +26,7 @@ function fetch_profile(email, on_fetched) {
 function fetch_community(community) {
     callback_fetch("/api/community?community=" + community, (response) => {
         response.forEach((post, index) => {
-            console.log(post)
+            console.log(post);
             render_post(post);
         });
     });
