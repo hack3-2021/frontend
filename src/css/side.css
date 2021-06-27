@@ -100,7 +100,7 @@ input, select{
   border-radius: 10px;
 }
 #newPost{
-  
+
 }
 #sendPost{
   margin-left: auto;
@@ -111,6 +111,7 @@ input, select{
 }
 
 .profile_picture{
+  padding: 5px;
   border-radius: 50%;
   width: 50px;
   height: 50px;
