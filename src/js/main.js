@@ -51,7 +51,7 @@ function create_user() {
     let picture_url = $("input[name='profileURL']").val();
     let bio = $("input[name='bio']").val();
     let phone_number = $("input[name='phoneNum']").val();
-    let vaccinated = $("input[name='vaccinated']").val();
+    let vaccinated = $("input[name='vaccinated'] option:selected").val();
     console.log(vaccinated);
     let community = $("input[name='suburb']").val();
     _callback_fetch("/api/profile?email=" + email, (response) => {
