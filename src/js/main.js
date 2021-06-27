@@ -1,7 +1,6 @@
 let test_email = "normal.human@gmail.com"
 
 async function render_post(email, contents) {
-
     let $container = $('#stream');
     $container.prepend(`<div class="post"><img><b><p class="name"></p></b><p class="body"></p></div>`);
     let $post = $container.children("div.first");
@@ -14,7 +13,8 @@ async function render_post(email, contents) {
         "async": true,
     }).done( function (response) {
         console.log(response);
-        $post.children("img").attr("src", response["picture"]);
+        print(post)
+        $post.childern("img").attr("src", response["picture"]);
         $post.children("p.first").text(response["firstName"] + " " + response["lastName"]);
         $post.children("p").last().text(contents);
     });
